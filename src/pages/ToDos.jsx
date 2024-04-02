@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useStore from "../store";
+import ToDoList from "../components/ToDos/ToDoList";
 
 const ToDos = () => {
-  return <div>Here is the ToDos</div>;
+  const { getTodos } = useStore();
+
+  useEffect(() => {
+    getTodos();
+  }, []);
+
+  return <ToDoList />;
 };
 
 export default ToDos;

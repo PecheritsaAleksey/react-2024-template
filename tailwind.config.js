@@ -6,6 +6,9 @@ export default {
       colors: {
         background: "#f9f7ff",
       },
+      scale: {
+        '101': '1.01',
+      }
     },
   },
   plugins: [],
