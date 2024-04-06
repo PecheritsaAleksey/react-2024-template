@@ -30,15 +30,17 @@ const ToDoList = () => {
     return todos
       .filter((todo) => todo.parent_id === parentId)
       .map((todo) => (
-        <div style={{ marginLeft: `${level * 20}px` }} key={todo.id}>
+        <div
+          style={{ marginLeft: `${level * 40}px`, marginBottom: "20px" }}
+          key={todo.id}
+        >
           <ToDoCard
             id={todo.id}
             title={todo.title}
             description={todo.description}
             done={todo.done}
-          >
-            {renderTodos(todos, todo.id, level + 1)}
-          </ToDoCard>
+          />
+          {renderTodos(todos, todo.id, level + 1)}
         </div>
       ));
   };

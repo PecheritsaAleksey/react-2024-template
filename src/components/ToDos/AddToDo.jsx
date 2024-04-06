@@ -4,12 +4,13 @@ import Button from "../../shared/Button";
 import useStore from "../../store";
 import { ToastContainer, toast } from "react-toastify";
 
-const AddToDo = ({ onClose }) => {
+const AddToDo = ({ onClose, parentTodoId }) => {
   const { addTodo } = useStore();
   const { register, handleSubmit } = useForm();
 
   const submitHandler = async (data) => {
     try {
+      data.parent_id = parentTodoId;
       await addTodo(data);
       onClose();
     } catch (error) {

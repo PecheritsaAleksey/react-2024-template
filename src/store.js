@@ -31,7 +31,7 @@ const useStore = create((set) => ({
   signOut: async () => {
     const { error } = await supabaseClient.auth.signOut();
     if (error) throw error;
-    set({ user: null });
+    set({ user: null, todos: [] });
   },
 
   // Todos actions
@@ -47,7 +47,7 @@ const useStore = create((set) => ({
     const { data, error } = await supabaseClient
       .from("todos")
       .select()
-      .eq("user_id", user.id);
+      .order("created_at", { ascending: true });
 
     if (error) throw error;
     set({ isTodosLoading: false });
@@ -62,12 +62,18 @@ const useStore = create((set) => ({
     if (error) throw error;
     set((state) => ({ todos: [...state.todos, data[0]] }));
   },
-  updateTodo: async (todo) => {
+  updateTodo: async (id, updatedTodo) => {
+    console.log(id);
+    console.log(updatedTodo);
+
     const { data, error } = await supabaseClient
       .from("todos")
-      .update(todo)
-      .eq("id", todo.id)
+      .update(updatedTodo)
+      .eq("id", id)
       .select();
+
+    console.log(data);
+
     if (error) throw error;
 
     set((state) => ({
