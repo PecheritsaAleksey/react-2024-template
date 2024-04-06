@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { supabaseClient } from "../config/supabase";
 import useStore from "../store";
-import Loading from "./Loading";
+import Loading from "../components/Loading";
 
 const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
